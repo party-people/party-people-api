@@ -21,6 +21,7 @@ class ArticlesController < ApplicationController
   end
 
   def destroy
+    @article.destroy
   end
 
   private
