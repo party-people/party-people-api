@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160102164522) do
+ActiveRecord::Schema.define(version: 20160102165118) do
 
   create_table "articles", force: :cascade do |t|
     t.string   "title",         limit: 255,               null: false
@@ -34,6 +34,23 @@ ActiveRecord::Schema.define(version: 20160102164522) do
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
   end
+
+  create_table "items", force: :cascade do |t|
+    t.string   "type",          limit: 255
+    t.string   "title",         limit: 255
+    t.text     "description",   limit: 65535
+    t.text     "image_url",     limit: 65535
+    t.text     "thumbnail_url", limit: 65535
+    t.string   "source",        limit: 255
+    t.text     "source_url",    limit: 65535
+    t.string   "snippet",       limit: 255
+    t.integer  "articles_id",   limit: 4
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+  end
+
+  add_index "items", ["articles_id"], name: "index_items_on_articles_id", using: :btree
+  add_index "items", ["type"], name: "index_items_on_type", using: :btree
 
   create_table "oauth_access_grants", force: :cascade do |t|
     t.integer  "resource_owner_id", limit: 4,     null: false
