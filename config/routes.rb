@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :users, only: [:create]
       resource  :current_user, path: 'me', controller: :current_user, only: [:show]
+      resources :categories, only: [:index]
       resources :articles do
         resources :items, only: [:create, :update, :destroy]
       end
