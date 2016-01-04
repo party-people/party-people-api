@@ -2,6 +2,7 @@ class CreateItems < ActiveRecord::Migration
   def change
     create_table :items do |t|
       t.string     :type,     null: :false
+      t.integer    :page, null: :false, default: 1
       t.integer    :position, null: :false, default: 1
       t.string     :title
       t.text       :description
@@ -10,7 +11,7 @@ class CreateItems < ActiveRecord::Migration
       t.string     :source
       t.text       :source_url
       t.string     :snippet
-      t.references :articles, index: true
+      t.references :article, index: true
 
       t.timestamps null: false
     end

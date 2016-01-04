@@ -14,19 +14,19 @@
 ActiveRecord::Schema.define(version: 20160102165118) do
 
   create_table "articles", force: :cascade do |t|
-    t.string   "title",         limit: 255,               null: false
-    t.text     "description",   limit: 65535,             null: false
-    t.integer  "views",         limit: 4,     default: 0, null: false
-    t.integer  "favorites",     limit: 4,     default: 0, null: false
-    t.integer  "status",        limit: 4,     default: 0, null: false
-    t.integer  "users_id",      limit: 4
-    t.integer  "categories_id", limit: 4
-    t.datetime "created_at",                              null: false
-    t.datetime "updated_at",                              null: false
+    t.string   "title",       limit: 255,               null: false
+    t.text     "description", limit: 65535,             null: false
+    t.integer  "views",       limit: 4,     default: 0, null: false
+    t.integer  "favorites",   limit: 4,     default: 0, null: false
+    t.integer  "status",      limit: 4,     default: 0, null: false
+    t.integer  "user_id",     limit: 4
+    t.integer  "category_id", limit: 4
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
   end
 
-  add_index "articles", ["categories_id"], name: "index_articles_on_categories_id", using: :btree
-  add_index "articles", ["users_id"], name: "index_articles_on_users_id", using: :btree
+  add_index "articles", ["category_id"], name: "index_articles_on_category_id", using: :btree
+  add_index "articles", ["user_id"], name: "index_articles_on_user_id", using: :btree
 
   create_table "categories", force: :cascade do |t|
     t.string   "title",       limit: 255,   null: false
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 20160102165118) do
 
   create_table "items", force: :cascade do |t|
     t.string   "type",          limit: 255
+    t.integer  "page",          limit: 4,     default: 1
     t.integer  "position",      limit: 4,     default: 1
     t.string   "title",         limit: 255
     t.text     "description",   limit: 65535
@@ -45,12 +46,12 @@ ActiveRecord::Schema.define(version: 20160102165118) do
     t.string   "source",        limit: 255
     t.text     "source_url",    limit: 65535
     t.string   "snippet",       limit: 255
-    t.integer  "articles_id",   limit: 4
+    t.integer  "article_id",    limit: 4
     t.datetime "created_at",                              null: false
     t.datetime "updated_at",                              null: false
   end
 
-  add_index "items", ["articles_id"], name: "index_items_on_articles_id", using: :btree
+  add_index "items", ["article_id"], name: "index_items_on_article_id", using: :btree
   add_index "items", ["type"], name: "index_items_on_type", using: :btree
 
   create_table "oauth_access_grants", force: :cascade do |t|
