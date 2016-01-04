@@ -15,17 +15,18 @@ module Api
       def new
         unless @article = current_resource_owner.articles.created.first
           @article = current_resource_owner.articles.build
-          @article.save!
         end
       end
 
       def create
+        @article = current_resource_owner.articles.build(article_params)
       end
 
       def edit
       end
 
       def update
+        @article.update(article_params)
       end
 
       def destroy
@@ -33,6 +34,10 @@ module Api
       end
 
       private
+      def article_params
+        params.require(:article).permit(:title, :description)
+      end
+
       def set_article
         @article = Article.find(params[:id])
       end
