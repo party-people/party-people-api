@@ -1,7 +1,9 @@
 module Api
   module V1
     class ArticlesController < ApiController
+      before_action :doorkeeper_authorize!, only: [:new, :create, :edit, :update, :destroy]
       before_action :set_article, only: [:show, :edit, :update, :destroy]
+
       def index
         @articles = Article.published.page(params[:page])
       end

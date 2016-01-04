@@ -1,6 +1,5 @@
 class ApiController < ApplicationController
   protect_from_forgery with: :null_session
-  before_action :doorkeeper_authorize!
 
   private
   def current_resource_owner
