@@ -13,6 +13,10 @@ module Api
       end
 
       def new
+        unless @article = current_resource_owner.articles.created.first
+          @article = current_resource_owner.articles.build
+          @article.save!
+        end
       end
 
       def create
