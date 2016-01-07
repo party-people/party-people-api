@@ -6,8 +6,8 @@ class CreateArticles < ActiveRecord::Migration
       t.integer    :views,       null: false,  default: 0
       t.integer    :favorites,   null: false,  default: 0
       t.integer    :status,      null: false,  default: 0
-      t.references :user,       index: true
-      t.references :category,  index: true
+      t.references :user,        index: true
+      t.references :category,    index: true
 
       t.timestamps null: false
     end

@@ -2,7 +2,7 @@ class CreateItems < ActiveRecord::Migration
   def change
     create_table :items do |t|
       t.string     :type,     null: :false
-      t.integer    :page, null: :false, default: 1
+      t.integer    :page,     null: :false, default: 1
       t.integer    :position, null: :false, default: 1
       t.string     :title
       t.text       :description
