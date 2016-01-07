@@ -3,7 +3,7 @@ class Api::V1::ArticlesController < ApiController
   before_action :set_article, only: [:show, :edit, :update, :destroy]
 
   def index
-    @articles = Article.published.page(params[:page])
+    @articles = Article.published.newest.page(params[:page])
   end
 
   def show
