@@ -30,6 +30,7 @@ gem 'kaminari'
 
 gem 'rack-cors', :require => 'rack/cors'
 
+gem 'mini_magick'
 gem 'carrierwave'
 
 # Use ActiveModel has_secure_password
